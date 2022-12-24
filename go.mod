@@ -2,7 +2,11 @@ module github.com/pocket-bot
 
 go 1.17
 
-require github.com/spf13/viper v1.14.0
+require (
+	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible
+	github.com/pkg/errors v0.9.1
+	github.com/spf13/viper v1.14.0
+)
 
 require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
@@ -16,6 +20,7 @@ require (
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.4.1 // indirect
+	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
 	golang.org/x/sys v0.0.0-20220908164124-27713097b956 // indirect
 	golang.org/x/text v0.4.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
