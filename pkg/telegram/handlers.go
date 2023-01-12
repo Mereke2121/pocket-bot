@@ -2,26 +2,20 @@ package telegram
 
 import (
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
-)
 
-func (b *Bot) handleUpdates(updates tgbotapi.UpdatesChannel) {
-	for update := range updates {
-		if update.Message == nil { // If we didn't get a message
-			continue
-		}
-		if update.Message.IsCommand() {
-			b.handleCommand(*update.Message)
-		} else {
-			b.handleMessage(*update.Message)
-		}
-	}
-}
+	"github.com/pocket-bot/pkg/repository"
+)
 
 func (b *Bot) handleCommand(message tgbotapi.Message) {
 	var text string
 	switch message.Command() {
 	case "start":
-		text = "Ты ввел команду старт"
+		_, err := b.storage.Get(int(message.Chat.ID), repository.AccessTokens)
+		if err != nil {
+			text = b.initAuthorization(message)
+		} else {
+			text = "Вы уже авторизованы"
+		}
 	default:
 		text = "Неизвестная команда :("
 	}
